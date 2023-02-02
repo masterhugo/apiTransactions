@@ -1,0 +1,32 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /v1.0/
+spring:
+  application:
+    name: api-transactions
+    version: develop
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/bootdb?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+    username: root
+    password: root
+    platform: mysql
+    initialization-mode: always
+---
+server:
+  port: ${PORT}
+  servlet:
+    context-path: /v1.0/
+spring:
+  profiles: release
+  application:
+    name: api-gateway
+    version: ${APP_VERSION}
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    platform: ${DATASOURCE_PLATFORM}
+    initialization-mode: always

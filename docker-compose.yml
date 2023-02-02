@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api-transactions:
+    build: .
+    ports:
+      - "8081:8081"
+    networks:
+      - transactions-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - transactions-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb
+
+networks:
+  transactions-mysql:
